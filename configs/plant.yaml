@@ -1,0 +1,10 @@
+plant:
+  advisory_only: true
+  feed_grade_bounds: [0.002, 0.08]
+  hardness_bounds: [5.0, 30.0]
+  throughput_bounds: [60.0, 180.0]
+  p80_bounds_um: [60.0, 350.0]
+  air_flow_bounds: [0.5, 2.5]
+  pulp_level_bounds: [0.2, 0.9]
+  ph_bounds: [8.0, 11.5]
+  reagent_bounds: [5.0, 80.0]

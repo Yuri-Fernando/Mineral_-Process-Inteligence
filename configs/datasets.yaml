@@ -1,0 +1,16 @@
+datasets:
+  geomet:
+    kind: real_public
+    record_url: https://zenodo.org/records/7051975
+    doi: 10.5281/zenodo.7051975
+    destination: data/raw/geomet
+  iron_flotation:
+    kind: real_public_industrial
+    record_url: https://www.kaggle.com/datasets/edumagalhaes/quality-prediction-in-a-mining-process
+    slug: edumagalhaes/quality-prediction-in-a-mining-process
+    destination: data/raw/iron_flotation
+  polymetallic:
+    kind: real_public
+    record_url: https://zenodo.org/records/22773521
+    doi: 10.5281/zenodo.22773521
+    destination: data/raw/polymetallic
