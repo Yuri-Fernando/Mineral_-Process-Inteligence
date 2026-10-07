@@ -5,7 +5,7 @@ This is the master continuity document. Update it with every material change.
 ## Identity
 
 - Project: Mineral Process Intelligence
-- Current version: `0.2.1`
+- Current version: `0.2.2`
 - Started: 2026-10-06
 - Status: applied-research implementation; advisory-only; no production-mine deployment claim
 - Source of truth: Python package and CLI. Dashboard and notebooks are presentation/tutorial layers.
@@ -26,7 +26,7 @@ This is the master continuity document. Update it with every material change.
 | Date | Decision | Rationale |
 |---|---|---|
 | 2026-10-06 | Create a standalone repository | Mineral processing/industrial control has a distinct identity from TerraBranch. |
-| 2026-10-06 | Python 3.12, `src/` layout, local-first | Reproducible on a free CPU environment and compatible with the available toolchain. |
+| 2026-10-06 | Python 3.10, `src/` layout, local-first | Reproducible on a free CPU environment and compatible with the available toolchain. |
 | 2026-10-06 | SciPy optimizer in the core | Keeps the end-to-end path free and executable; Optuna/MLflow remain optional extras. |
 | 2026-10-06 | Synthetic fallback for demos | The Kaggle source may require credentials and real datasets must never block validation. |
 | 2026-10-06 | Dashboard is read-only/advisory | The engine/CLI stays authoritative and no control command is written to a real plant. |
@@ -46,7 +46,7 @@ Append commands, dates and truthful results here. Do not replace older entries.
 
 ### 2026-10-06 — implementation opened
 
-- Confirmed Python 3.12 plus the required free scientific/API/dashboard tooling are available.
+- Confirmed Python 3.10 plus the required free scientific/API/dashboard tooling are available.
 - Live validation results are recorded after implementation in this section.
 
 
@@ -62,7 +62,7 @@ Append commands, dates and truthful results here. Do not replace older entries.
 - CLI synthetic demo: MAE `0.0804`, RMSE `0.1030`, R2 `0.7904`; drift was detected after the
   seeded disturbance; optimizer returned `REVIEW` because predicted grade was below specification.
 - Dashboard: Streamlit AppTest rendered the title and reported zero exceptions.
-- Notebooks: every code cell in all three notebooks executed sequentially with Python 3.12.
+- Notebooks: every code cell in all three notebooks executed sequentially with Python 3.10.
   The real-data tutorial used the first 120,000 chronological Kaggle rows; its honest holdout
   baseline was MAE `0.8522`, RMSE `1.0748`, R2 `-0.5989` and requires temporal feature improvement.
 - Docker Compose configuration parsed, but image/runtime validation was not performed because the
@@ -99,7 +99,7 @@ Append commands, dates and truthful results here. Do not replace older entries.
 - Extended API contracts, local/optional-MLflow tracking, real-case dashboard tabs and the fourth
   notebook were added.
 - Final checks: `21 passed`; Ruff clean; mypy clean across 35 source files; dashboard AppTest rendered
-  five tabs with zero exceptions; all cells in the fourth notebook executed with Python 3.12.
+  five tabs with zero exceptions; all cells in the fourth notebook executed with Python 3.10.
 - Docker runtime remains unvalidated because the Docker Desktop Linux daemon is not running.
 - Iron-flotation causal preparation consolidated 120,000 raw rows into 667 unique timestamps and
   252 past-only features. It did not beat the simple baseline: causal R2 `-0.6141` versus baseline
@@ -116,8 +116,16 @@ Append commands, dates and truthful results here. Do not replace older entries.
 - Compared the public README structures of VisionBrain, TerraBranch and AegisLLM before expanding
   the project documentation around context, objectives, architecture, modules, operation, metrics,
   quickstart, validation, limitations, roadmap and license.
-- Registered the dedicated `mineral-process-py312` kernel and executed all four notebooks from the
-  repository root: 29 code cells and 32 persisted outputs, with no cell errors.
+- Executed all four end-to-end notebooks and persisted their outputs without cell errors.
 - Added `scripts/execute_notebooks.py` so the saved notebook evidence can be reproduced in one command.
 - Kept raw datasets, processed data, models, generated reports and secrets outside version control.
 - Prepared the public `v0.2.1` release with the validated code, documentation and notebooks.
+
+### 2026-10-06 — v0.2.2 Python 3.10 standardization
+
+- Standardized package metadata, Ruff, mypy, Docker, GitHub Actions and notebook kernels on Python 3.10.
+- Replaced Python 3.11-only string enums with Python 3.10-compatible str, Enum classes.
+- Re-executed four notebooks with Python 3.10: 29 code cells, 30 outputs and zero cell errors.
+- Added the TestClient dependency exposed by the clean Linux runner and repeated local/remote gates.
+- Python 3.10 validation on a local non-synchronized copy: Ruff clean; mypy clean across 35
+  source files; 21 tests passed; dashboard rendered five tabs with zero exceptions.

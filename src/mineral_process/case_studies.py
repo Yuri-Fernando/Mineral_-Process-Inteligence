@@ -144,7 +144,7 @@ def _observed_pareto(frame: pd.DataFrame) -> pd.DataFrame:
     columns = ["Rec_total_Ag", "TMS/guardia", "P80_12x16"]
     data = frame[columns].dropna().copy()
     values = data.to_numpy()
-    keep = np.ones(len(data), dtype=bool)
+    keep: np.ndarray = np.ones(len(data), dtype=bool)
     for index, row in enumerate(values):
         dominates = (
             (values[:, 0] >= row[0])

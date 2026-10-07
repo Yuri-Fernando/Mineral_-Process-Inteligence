@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mineral-process-intelligence"
-version = "0.2.1"
+version = "0.2.2"
 description = "Local-first applied research platform for mineral processing intelligence."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Yuri Fernando"}]
 dependencies = [
@@ -26,7 +26,14 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["mypy>=1.13", "nbclient>=0.10", "nbformat>=5.10", "pytest>=8.3", "ruff>=0.8"]
+dev = [
+  "httpx2>=2.13,<3",
+  "mypy>=1.13",
+  "nbclient>=0.10",
+  "nbformat>=5.10",
+  "pytest>=8.3",
+  "ruff>=0.8",
+]
 mlops = ["mlflow>=2.18", "optuna>=4.1"]
 
 [project.scripts]
@@ -42,14 +49,15 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py312"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.10"
 packages = ["mineral_process"]
 ignore_missing_imports = true
+follow_imports = "skip"
 warn_unused_ignores = true
 check_untyped_defs = true

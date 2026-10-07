@@ -8,7 +8,7 @@ import shutil
 import urllib.request
 import zipfile
 from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -43,7 +43,7 @@ def _download(url: str, destination: Path) -> DatasetFile:
         path=destination.as_posix(),
         sha256=sha256_file(destination),
         size_bytes=destination.stat().st_size,
-        downloaded_at=datetime.now(UTC).isoformat(),
+        downloaded_at=datetime.now(timezone.utc).isoformat(),
     )
 
 

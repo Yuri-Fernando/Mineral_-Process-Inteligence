@@ -1,13 +1,13 @@
 """Deterministic tag-quality assessment."""
 
 from dataclasses import dataclass
-from enum import StrEnum
+from enum import Enum
 
 import numpy as np
 import pandas as pd
 
 
-class QualityFlag(StrEnum):
+class QualityFlag(str, Enum):
     GOOD = "GOOD"
     SUSPECT = "SUSPECT"
     BAD = "BAD"

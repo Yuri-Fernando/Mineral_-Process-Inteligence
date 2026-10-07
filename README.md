@@ -2,10 +2,10 @@
 
 ### Geometalurgia · Cominuição · Flotação · Séries Temporais Industriais · Soft Sensors · Digital Twin · Otimização · Economic MPC
 
-[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![CI](https://github.com/Yuri-Fernando/Mineral_-Process-Inteligence/actions/workflows/ci.yml/badge.svg)](https://github.com/Yuri-Fernando/Mineral_-Process-Inteligence/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.2-blue.svg)](CHANGELOG.md)
 [![Mode](https://img.shields.io/badge/mode-advisory--only-orange.svg)](docs/safety_boundaries.md)
 
 Plataforma local-first de pesquisa aplicada para inteligência de processos minerais. O projeto combina
@@ -30,7 +30,7 @@ identificado. Os estudos não são concatenados nem apresentados como se pertenc
 | Digital twin e falhas | Implementados | simulação determinística, distúrbios e 8 modos de falha de sensor |
 | Otimização e controle | Implementados | recomendação restrita, GP-EI, NSGA-II e Economic MPC |
 | API e dashboard | Implementados | FastAPI consultiva e Streamlit com 5 abas / 5 gráficos |
-| Notebooks | Executados e versionados | 4 notebooks, 29 células de código e 32 outputs persistidos |
+| Notebooks | Executados e versionados | 4 notebooks, 29 células de código e 30 outputs persistidos |
 | Qualidade local | Validada | `21 passed`, Ruff limpo e mypy limpo em 35 arquivos-fonte |
 | Docker | Configuração validada | Compose analisado; runtime não validado por daemon indisponível |
 | Operação industrial | Fora do escopo | exige calibração, HAZOP/MOC, cibersegurança e comissionamento |
@@ -270,7 +270,7 @@ Todos os 45 intervalos do benchmark violaram a especificação de teor 0.18. Por
 
 ### Requisitos
 
-- Python 3.12+
+- Python 3.10+
 - Git
 - ambiente local com aproximadamente 1 GB livre se todos os dados forem baixados
 - Docker é opcional
@@ -278,7 +278,7 @@ Todos os 45 intervalos do benchmark violaram a especificação de teor 0.18. Por
 ### Windows PowerShell
 
 ```powershell
-py -3.12 -m venv .venv
+py -3.10 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
 .\.venv\Scripts\python.exe -m mineral_process.cli run-demo
@@ -287,7 +287,7 @@ py -3.12 -m venv .venv
 ### Linux / macOS
 
 ```bash
-python3.12 -m venv .venv
+python3.10 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
@@ -364,21 +364,21 @@ zero exceções.
 
 ## 📓 Notebooks end-to-end
 
-Os notebooks versionados já estão executados, com outputs persistidos e kernel Python 3.12 explícito.
+Os notebooks versionados já estão executados, com outputs persistidos e kernel Python 3.10 explícito.
 Eles chamam o pacote de produção, evitando uma segunda implementação escondida em células.
 
 | Notebook | Células / outputs | Conteúdo |
 |---|---:|---|
 | [`01-domain-digital-twin.ipynb`](output/jupyter-notebook/01-domain-digital-twin.ipynb) | 8 / 9 | invariantes físicos, twin e falhas |
-| [`02-public-data-case-studies.ipynb`](output/jupyter-notebook/02-public-data-case-studies.ipynb) | 7 / 7 | dados públicos, soft sensor e validação temporal |
+| [`02-public-data-case-studies.ipynb`](output/jupyter-notebook/02-public-data-case-studies.ipynb) | 7 / 6 | dados públicos, soft sensor e validação temporal |
 | [`03-optimization-mpc.ipynb`](output/jupyter-notebook/03-optimization-mpc.ipynb) | 8 / 9 | otimização, NSGA-II e benchmark MPC |
-| [`04-real-geomet-polymetallic.ipynb`](output/jupyter-notebook/04-real-geomet-polymetallic.ipynb) | 6 / 7 | casos reais GeoMet e polimetálico |
+| [`04-real-geomet-polymetallic.ipynb`](output/jupyter-notebook/04-real-geomet-polymetallic.ipynb) | 6 / 6 | casos reais GeoMet e polimetálico |
 
 Reexecução completa:
 
 ```powershell
-py -3.12 -m ipykernel install --user --name mineral-process-py312
-py -3.12 scripts\execute_notebooks.py
+py -3.10 -m ipykernel install --user --name mineral-process-py310
+py -3.10 scripts\execute_notebooks.py
 ```
 
 O primeiro comando registra o kernel no perfil local; o segundo falha imediatamente se uma célula
@@ -401,16 +401,16 @@ validada, não um resultado presumido.
 ruff check .
 mypy src/mineral_process
 pytest
-py -3.12 scripts\execute_notebooks.py
+py -3.10 scripts\execute_notebooks.py
 ```
 
-Evidência local da versão `0.2.1`:
+Evidência local da versão `0.2.2`:
 
 - pytest: **21 testes aprovados**;
 - Ruff: **todos os checks aprovados**;
 - mypy: **sucesso em 35 arquivos-fonte**;
 - dashboard: **5 abas, 5 gráficos, zero exceções**;
-- notebooks: **4 arquivos, 29 células executadas, 32 outputs, zero erro**;
+- notebooks: **4 arquivos, 29 células executadas, 30 outputs, zero erro**;
 - Docker Compose: **configuração válida; runtime não executado**;
 - MLflow: **espelhamento não executado porque o extra opcional não está instalado**.
 
@@ -509,7 +509,7 @@ O projeto usa [Semantic Versioning](https://semver.org/) e o formato
 4. executar testes, lint, tipos e notebooks proporcionalmente à mudança;
 5. manter dados brutos, modelos, caches, segredos e relatórios gerados fora do Git.
 
-Versão atual: **0.2.1**.
+Versão atual: **0.2.2**.
 
 ## Licença
 

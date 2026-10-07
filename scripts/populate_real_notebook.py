@@ -119,10 +119,10 @@ a controlled campaign.
     ),
 ]
 notebook.metadata.kernelspec = {
-    "display_name": "Python 3.12",
+    "display_name": "Python 3.10",
     "language": "python",
     "name": "python3",
 }
-notebook.metadata.language_info = {"name": "python", "version": "3.12"}
+notebook.metadata.language_info = {"name": "python", "version": "3.10"}
 nbformat.write(notebook, path)
 print(f"Populated {path}")

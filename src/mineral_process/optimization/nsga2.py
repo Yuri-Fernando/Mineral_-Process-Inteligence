@@ -36,7 +36,7 @@ def _dominates(left: np.ndarray, right: np.ndarray) -> bool:
 
 
 def non_dominated_front(objectives: np.ndarray) -> np.ndarray:
-    keep = np.ones(len(objectives), dtype=bool)
+    keep: np.ndarray = np.ones(len(objectives), dtype=bool)
     for index, row in enumerate(objectives):
         keep[index] = not any(
             _dominates(other, row)

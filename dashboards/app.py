@@ -43,19 +43,19 @@ with overview:
             y=["recovery", "concentrate_grade"],
             color_discrete_sequence=["#20c997", "#ffc107"],
         ),
-        use_container_width=True,
+        width="stretch",
     )
-    st.plotly_chart(px.line(trajectory, y=["p80_um", "throughput_tph"]), use_container_width=True)
+    st.plotly_chart(px.line(trajectory, y=["p80_um", "throughput_tph"]), width="stretch")
 with real_cases:
     st.info("Each table is a separate operation/study. Metrics are never pooled across datasets.")
     geomet_path = output / "geomet" / "geomet_metrics.csv"
     poly_path = output / "polymetallic" / "grinding_recovery_metrics.csv"
     if geomet_path.exists():
         st.subheader("Copper GeoMet — spatial holdout")
-        st.dataframe(pd.read_csv(geomet_path), use_container_width=True)
+        st.dataframe(pd.read_csv(geomet_path), width="stretch")
     if poly_path.exists():
         st.subheader("Polymetallic grinding — ordered holdout")
-        st.dataframe(pd.read_csv(poly_path), use_container_width=True)
+        st.dataframe(pd.read_csv(poly_path), width="stretch")
     if not geomet_path.exists() or not poly_path.exists():
         st.code("python -m mineral_process.cli run-real-cases")
 
@@ -64,9 +64,9 @@ with optimization:
         px.scatter(
             pareto, x="cost", y="recovery", color="grade", hover_data=["reagent_gpt", "air_flow"]
         ),
-        use_container_width=True,
+        width="stretch",
     )
-    st.dataframe(pareto.sort_values("recovery", ascending=False).head(20), use_container_width=True)
+    st.dataframe(pareto.sort_values("recovery", ascending=False).head(20), width="stretch")
     nsga_path = output / "advanced_optimization" / "nsga2_pareto.csv"
     if nsga_path.exists():
         st.subheader("NSGA-II evolved Pareto set")
@@ -78,17 +78,17 @@ with optimization:
                 y="neg_recovery_penalized",
                 color="neg_grade_penalized",
             ),
-            use_container_width=True,
+            width="stretch",
         )
 
 with control:
     benchmark_path = output / "mpc" / "mpc_benchmark.csv"
     if benchmark_path.exists():
         benchmark = pd.read_csv(benchmark_path)
-        st.dataframe(benchmark, use_container_width=True)
+        st.dataframe(benchmark, width="stretch")
         st.plotly_chart(
             px.bar(benchmark, x="controller", y="average_recovery", color="grade_violations"),
-            use_container_width=True,
+            width="stretch",
         )
         st.warning(
             "All tested controllers violated the grade specification in this seeded scenario; "

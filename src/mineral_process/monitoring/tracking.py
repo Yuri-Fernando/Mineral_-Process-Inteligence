@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -18,7 +18,7 @@ def track_run(
 ) -> Path:
     """Always write portable JSON; mirror to MLflow only when the optional extra is installed."""
     root.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now(UTC)
+    timestamp = datetime.now(timezone.utc)
     safe_name = "".join(
         character if character.isalnum() or character in "-_" else "-" for character in run_name
     )

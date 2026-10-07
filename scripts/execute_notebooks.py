@@ -17,7 +17,7 @@ def execute_notebook(path: Path, *, kernel_name: str, timeout: int) -> tuple[int
     notebook = nbformat.read(path, as_version=4)
     notebook.setdefault("metadata", {}).setdefault("kernelspec", {})["name"] = kernel_name
     notebook["metadata"]["kernelspec"]["display_name"] = (
-        "Python 3.12 (Mineral Process Intelligence)"
+        "Python 3.10 (Mineral Process Intelligence)"
     )
     client = NotebookClient(
         notebook,
@@ -35,7 +35,7 @@ def execute_notebook(path: Path, *, kernel_name: str, timeout: int) -> tuple[int
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--kernel", default="mineral-process-py312")
+    parser.add_argument("--kernel", default="mineral-process-py310")
     parser.add_argument("--timeout", type=int, default=900)
     args = parser.parse_args()
 

@@ -51,7 +51,7 @@ def economic_mpc(
         grade_penalty = sum(max(0.18 - row["concentrate_grade"], 0) ** 2 for row in trajectory)
         recovery_value = sum(row["recovery"] for row in trajectory)
         cost = sum(row["cost_proxy"] for row in trajectory)
-        move = np.sum(((values - x0) / np.array([0.5, 0.2, 0.5, 15, 25])) ** 2)
+        move: float = float(np.sum(((values - x0) / np.array([0.5, 0.2, 0.5, 15, 25])) ** 2))
         return float(-100 * recovery_value + 1200 * grade_penalty + cost + 0.5 * move)
 
     result = minimize(

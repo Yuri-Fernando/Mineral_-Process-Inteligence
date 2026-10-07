@@ -1,12 +1,12 @@
 """Reproducible industrial sensor fault injection."""
 
 from dataclasses import dataclass
-from enum import StrEnum
+from enum import Enum
 
 import numpy as np
 
 
-class FaultType(StrEnum):
+class FaultType(str, Enum):
     NOISE = "noise"
     BIAS = "bias"
     DRIFT = "drift"
